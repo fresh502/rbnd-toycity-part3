@@ -18,6 +18,10 @@ class Customer
 		end
 	end
 
+	def purchase(product)
+		Transaction.new(self, product)
+	end
+
 	private
 	def add_to_customers(name)
 		is_new_customer = true
