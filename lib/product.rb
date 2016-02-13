@@ -16,9 +16,7 @@ class Product
 
 	def self.find_by_title(title)
 		@@products.each do |product|
-			if product.title == title
-				break product
-			end
+			break product if product.title == title
 		end
 	end
 
@@ -36,7 +34,7 @@ class Product
 		@@products.each do |product|
 			if product.title == title
 				is_new_product = false
-				raise DuplicateProductError, "#{title} already exists"
+				raise DuplicateProductError, "'#{title}' already exists"  ##check if 'break' is available
 				break
 			end
 		end
