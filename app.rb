@@ -2,12 +2,13 @@ require_relative "lib/errors"
 require_relative "lib/customer"
 require_relative "lib/product"
 require_relative "lib/transaction"
+require_relative "lib/brand"
 
 # PRODUCTS
 
-Product.new(title: "LEGO Iron Man vs. Ultron", price: 22.99, stock: 55)
-Product.new(title: "Nano Block Empire State Building", price: 49.99, stock: 12)
-Product.new(title: "LEGO Firehouse Headquarter", price: 199.99, stock: 0)
+Product.new(title: "LEGO Iron Man vs. Ultron", brand_name: "LEGO", price: 22.99, stock: 55)
+Product.new(title: "Nano Block Empire State Building", brand_name: "Nano Blocks", price: 49.99, stock: 12)
+Product.new(title: "LEGO Firehouse Headquarter", brand_name: "LEGO", price: 199.99, stock: 0)
 
 puts Product.all.count # Should return 3
 
@@ -64,3 +65,6 @@ puts transaction2.product == nanoblock # Should return true
 
 # walter.purchase(firehouse)
 # Should return OutOfStockError: 'LEGO Firehouse Headquarter' is out of stock.
+
+puts Brand.all.count # Should return 2
+Brand.find_by_name("LEGO").products.each { |product| puts product.title } # Should return 'LEGO' brand's product title

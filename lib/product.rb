@@ -8,7 +8,7 @@ class Product
 		@title = options[:title]
 		@price = options[:price]
 		@stock = options[:stock]
-		add_to_products(options[:title])
+		add_to_products(options[:title], options[:brand_name])
 	end
 
 	def self.all
@@ -30,7 +30,7 @@ class Product
 	end
 
 	private
-	def add_to_products(title)
+	def add_to_products(title, brand_name)
 		is_new_product = true
 		@@products.each do |product|
 			if product.title == title
@@ -39,6 +39,9 @@ class Product
 				break
 			end
 		end
-		@@products << self if is_new_product
+		if is_new_product
+			@@products << self
+			Brand.new(name: brand_name, product: self)
+		end
 	end
 end
