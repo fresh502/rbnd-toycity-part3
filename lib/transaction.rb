@@ -32,7 +32,7 @@ class Transaction
 			product.stock -= 1
 			@@transactions << self
 		else
-			raise OutOfStockError, "'#{product.title}' is out of stock"
+			raise OutOfStockError, "'#{options[:product].title}' is out of stock"
 		end
 	end
 end
