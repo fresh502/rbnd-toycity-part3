@@ -56,7 +56,7 @@ puts nanoblock.stock # Should return 11
 
 # PURCHASES
 
-walter.purchase(nanoblock)
+puts walter.purchase(nanoblock)
 
 puts Transaction.all.count # Should return 2
 
@@ -67,11 +67,14 @@ puts transaction2.product == nanoblock # Should return true
 # Should return OutOfStockError: 'LEGO Firehouse Headquarter' is out of stock.
 
 # Brand
+puts
+puts '========new features area==========='
 
 puts Brand.all.count # Should return 2
 Brand.all.each do |each_brand|
-	puts each_brand.inspect # Should return each brand
+	puts each_brand.inspect
 end
+# Should return each brand
 Brand.find_by_name("LEGO").products.each { |product| puts product.title } # Should return 'LEGO' brand's product title
 
 # Cancel transaction(a way for customers to return items)
