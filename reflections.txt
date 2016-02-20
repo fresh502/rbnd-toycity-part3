@@ -1,0 +1,9 @@
+How long did you spend working on this project?
+ -> I spent almost 4 hours working on this project.
+What was the most rewarding challenge you conquered?
+ -> I was happy when I added brand features.
+What two additional features did you build? Why?
+ -> I built two additional features of cancelling transactions and brand.
+ I thought these two features are essential when I apply this project to real world.
+Where do you still have room to grow?
+ -> It's possible to improve finding transactions.
