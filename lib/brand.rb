@@ -14,7 +14,7 @@ class Brand
 	end
 
 	def self.find_by_name(name)
-		@@brands.find { |brand| brand.name == name } # apply find method. Check if it is possbile in other classes.
+		@@brands.find { |brand| brand.name == name }
 	end
 
 	private

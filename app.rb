@@ -45,7 +45,7 @@ puts walter.name # Should return "Walter Latimer"
 
 # TRANSACTIONS
 
-transaction = Transaction.new(walter, nanoblock)
+transaction = Transaction.new(customer: walter, product: nanoblock)
 
 puts transaction.id # Should return 1
 puts transaction.product == nanoblock # Should return true
@@ -56,7 +56,7 @@ puts nanoblock.stock # Should return 11
 
 # PURCHASES
 
-puts walter.purchase(nanoblock)
+walter.purchase(nanoblock)
 
 puts Transaction.all.count # Should return 2
 
@@ -66,5 +66,21 @@ puts transaction2.product == nanoblock # Should return true
 # walter.purchase(firehouse)
 # Should return OutOfStockError: 'LEGO Firehouse Headquarter' is out of stock.
 
+# Brand
+
 puts Brand.all.count # Should return 2
+Brand.all.each do |each_brand|
+	puts each_brand.inspect # Should return each brand
+end
 Brand.find_by_name("LEGO").products.each { |product| puts product.title } # Should return 'LEGO' brand's product title
+
+# Cancel transaction(a way for customers to return items)
+
+puts Transaction.all.count # Should return 2
+puts nanoblock.stock # Should return 10
+puts Transaction.all.inspect
+Transaction.cancel(transaction2) # Cancel transaction of id=2 in which Walter bought nanoblock
+puts Transaction.all.count # Should return 1
+puts nanoblock.stock # Should return 11
+puts Transaction.all.inspect
+

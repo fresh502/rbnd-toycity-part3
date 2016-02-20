@@ -4,8 +4,8 @@ class Transaction
 	@@id = 0
 	@@transactions = []
 
-	def initialize(customer, product)
-		add_to_transactions(customer, product)
+	def initialize(options={})
+		add_to_transactions(options)
 	end
 
 	def self.all
@@ -18,12 +18,17 @@ class Transaction
 		end
 	end
 
+	def self.cancel(transaction_be_canceled)
+		@@transactions.delete_if { |transaction| transaction.id == transaction_be_canceled.id }
+		transaction_be_canceled.product.stock += 1
+	end
+
 	private
-	def add_to_transactions(customer, product)
-		if product.stock > 0
+	def add_to_transactions(options)
+		if options[:product].stock > 0
 			@id = @@id += 1
-			@customer = customer
-			@product = product
+			@customer = options[:customer]
+			@product = options[:product]
 			product.stock -= 1
 			@@transactions << self
 		else

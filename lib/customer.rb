@@ -13,13 +13,15 @@ class Customer
 	end
 
 	def self.find_by_name(name)
-		@@customers.each do |customer|
-			break customer if customer.name == name
-		end
+		@@customers.find { |customer| customer.name == name }
 	end
 
 	def purchase(product)
-		Transaction.new(self, product)
+		Transaction.new(customer: self, product: product)
+	end
+
+	def return(transaction_id)
+		Transaction.cancel(transaction_id)
 	end
 
 	private
@@ -28,8 +30,7 @@ class Customer
 		@@customers.each do |customer|
 			if customer.name == name
 				is_new_customer = false
-				raise DuplicateCustomerError, "'#{name}' already exists" #check if 'break' is available
-				break
+				raise DuplicateCustomerError, "'#{name}' already exists"
 			end
 		end
 		@@customers << self if is_new_customer
